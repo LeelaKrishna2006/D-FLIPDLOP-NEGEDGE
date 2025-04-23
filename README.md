@@ -1,16 +1,18 @@
 # D-FLIPDLOP-NEGEDGE
 
-**AIM:**
+*AIM:*
 
 To implement  D flipflop using verilog and validating their functionality using their functional tables
 
-**SOFTWARE REQUIRED:**
+*SOFTWARE REQUIRED:*
 
 Quartus prime
 
-**THEORY**
+*THEORY*
 
-**D Flip-Flop**
+    D flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, D latch operates with enable signal. That means, the output of D flip-flop is insensitive to the changes in the input, D except for active transition of the clock signal. The circuit diagram of D flip-flop is shown in the following figure.
+
+*D Flip-Flop*
 
 D flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, D latch operates with enable signal. That means, the output of D flip-flop is insensitive to the changes in the input, D except for active transition of the clock signal. The circuit diagram of D flip-flop is shown in the following figure.
 
@@ -26,19 +28,46 @@ Therefore, D flip-flop always Hold the information, which is available on data i
 
 Next state of D flip-flop is always equal to data input, D for every positive transition of the clock signal. Hence, D flip-flops can be used in registers, shift registers and some of the counters.
 
-**Procedure**
+*Procedure*
 
-/* write all the steps invloved */
+1.Define Inputs/Outputs: Inputs: D (data), c1k (clock); Outputs: Q, Qbar (~Q).
 
-**PROGRAM**
+  2.Initialization: Set Q = 0 and Qbar = 1 at the start of the simulation.
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
+  3.D Flip-Flop Logic: On the positive edge of c1k, assign Q = D.
+
+  4.Complementary Output: Update Qbar = ~D to maintain complementarity.
+
+  5.Testbench: Test with various D and c1k values to verify data storage
+
+*PROGRAM*
+
+     module d_ff_neg_edge (d, clk, rst, q);
+           input d, clk, rst;
+           output reg q;
+         
+           always @(negedge clk or posedge rst) begin
+             if (rst)
+               q <= 0; // Reset the flip-flop
+             else
+               q <= d; // D input is passed to Q on the negative clock edge
+           end
+          endmodule
+Developed by: arani leela krishna
+RegisterNumber: 212224240013
 */
 
-**RTL LOGIC FOR FLIPFLOPS**
+*RTL LOGIC FOR FLIPFLOPS*
+
+![Screenshot 2025-01-03 135104](https://github.com/user-attachments/assets/601b2e9f-3f29-4d61-8481-9d096be14f5a)
 
 
-**TIMING DIGRAMS FOR FLIP FLOPS**
+
+*TIMING DIAGRAMS FOR FLIP FLOPS*
+
+![Screenshot 2025-01-03 135119](https://github.com/user-attachments/assets/b4204426-0793-4317-9b8c-403d9bd2d180)
 
 
-**RESULTS**
+*RESULTS*
+Thus the program to implement D flipflop using verilog and validating their
+ functionality using their functional tables has been successfully verified
